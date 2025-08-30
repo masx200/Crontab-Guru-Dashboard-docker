@@ -54,7 +54,7 @@ run    rm /tmp/usr/local/bin/cronitor.tar.gz
 EXPOSE 9000
 
 # Run the dashboard
-CMD ["bash","-c","cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-username $YOUR_PASSWORD_HERE && cronitor dash --port 9000"]
+CMD ["bash","-c","cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000"]
 
 env TELEMETRY=off
 
