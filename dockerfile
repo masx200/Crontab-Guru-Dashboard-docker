@@ -61,3 +61,6 @@ EXPOSE 9000
 CMD ["bash","-c","cronitor configure --auth-username $YOUR_USERNAME_HERE --auth-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000"]
 
 env TELEMETRY=off
+
+
+run curl https://crontab.guru/install | sh
