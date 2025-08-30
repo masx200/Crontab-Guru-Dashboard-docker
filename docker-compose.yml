@@ -51,7 +51,7 @@ services:
 
     environment:
       - "YOUR_USERNAME_HERE=rcz4j3xn9cdbffxohg0vk6xvodecqlfjc8dk5vau2dag0f9cst"
-      - "YOUR_PASSWORD_HERE=xwplse6d0lqz2yo12kq8zlbios5h6dhxdsn416rvnzdlrad00i"
+      - "YOUR_PASSWORD_HERE=<password>"
       - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       - "NODE_VERSION=22.19.0"
       - "YARN_VERSION=1.22.22"
