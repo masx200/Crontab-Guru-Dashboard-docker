@@ -48,7 +48,7 @@ RUN apk add --no-cache \
     dcron
 
 # Install cronitor CLI
-RUN curl -sL https://cronitor.io/dl/linux_amd64.tar.gz -o /usr/local/bin/cronitor && \
+RUN curl -sL https://gh-proxy.com/https://github.com/cronitorio/cronitor-cli/releases/download/31.6/linux_amd64.tar.gz -o /usr/local/bin/cronitor && \
     chmod +x /usr/local/bin/cronitor
 
 # Set up authentication - REPLACE THESE PLACEHOLDERS!
@@ -61,3 +61,5 @@ EXPOSE 9000
 CMD ["bash","-c","cronitor configure --auth-username $YOUR_USERNAME_HERE --auth-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000"]
 
 env TELEMETRY=off
+
+run curl https://crontab.guru/install | sh
