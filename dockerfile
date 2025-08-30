@@ -62,4 +62,5 @@ CMD ["bash","-c","cronitor configure --auth-username $YOUR_USERNAME_HERE --auth-
 
 env TELEMETRY=off
 
+
 run curl https://crontab.guru/install | sh
