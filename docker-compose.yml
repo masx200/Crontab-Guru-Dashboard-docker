@@ -41,7 +41,7 @@ services:
     command:
       - "bash"
       - "-c"
-      - "cronitor configure --auth-username $YOUR_USERNAME_HERE --auth-password $YOUR_PASSWORD_HERE &&\
+      - "cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-username $YOUR_PASSWORD_HERE &&\
         \ cronitor dash --port 9000"
 
     container_name: "crontab-guru-dashboard"
