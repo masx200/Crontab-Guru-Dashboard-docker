@@ -88,6 +88,7 @@ services:
     tty: true
 
     volumes:
+      - "/vol1/1000/crontab-guru-dashboard/etc/cronitor:/etc/cronitor"
       - "/vol1/1000/crontab-guru-dashboard/root/.config/cronitor:/root/.config/cronitor"
       - "/vol1/1000/crontab-guru-dashboard/var/spool/cron/crontabs:/var/spool/cron/crontabs"
       - "/vol1/1000/immich-cli/root/.config/immich:/root/.config/immich"
