@@ -36,12 +36,6 @@ ENV TZ=Asia/Shanghai
  
  
  
- 
- 
- 
- 
- 
- 
  RUN echo "0 */4 * * * /app/nightly_task.sh" > /etc/crontabs/root  # 直接写入root的crontab
  #CMD ["crond", "-l", "2", "-f"]  # 容器启动时运行crond（-f前台运行）
 
