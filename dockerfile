@@ -8,7 +8,7 @@ run npm install -g cnpm --registry=https://registry.npmmirror.com
 run npm config set registry https://registry.npmmirror.com 
 # 安装系统依赖（根据实际需求调整）
 RUN apk add --no-cache \
-    git \
+    git sudo\
     python3 \
     make \
     g++
@@ -50,7 +50,9 @@ RUN apk add --no-cache \
 
 
 # Install cronitor CLI
-RUN curl -sL https://gh-proxy.com/https://github.com/cronitorio/cronitor-cli/releases/download/31.6/linux_amd64.tar.gz -o /tmp/usr/local/bin/cronitor.tar.gz && sudo tar xvf /tmp/usr/local/bin/cronitor.tar.gz -C /usr/local/bin/
+RUN curl -sL https://gh-proxy.com/https://github.com/cronitorio/cronitor-cli/releases/download/31.6/linux_amd64.tar.gz -o /tmp/usr/local/bin/cronitor.tar.gz 
+
+run sudo tar xvf /tmp/usr/local/bin/cronitor.tar.gz -C /usr/local/bin/
 run    chmod +x /usr/local/bin/cronitor
 run    rm /tmp/usr/local/bin/cronitor.tar.gz
 
