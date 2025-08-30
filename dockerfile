@@ -18,12 +18,6 @@ RUN cnpm install -g @immich/cli --unsafe-perm \
     && npm cache clean --force \
     && rm -rf /tmp/* 
 
-# 验证安装（可选，调试时建议保留）
-#RUN immich --version 
-
-# 设置容器默认命令
-#CMD ["immich", "--help"]
-# Dockerfile 
 
 run sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
 RUN apk add --no-cache  tzdata  # 安装cron和时区工具 
@@ -37,7 +31,6 @@ ENV TZ=Asia/Shanghai
 
 
 RUN echo "0 */4 * * * /app/nightly_task.sh" > /etc/crontabs/root  # 直接写入root的crontab
-#CMD ["crond", "-l", "2", "-f"]  # 容器启动时运行crond（-f前台运行）
 
 
 # Install dependencies
@@ -48,7 +41,7 @@ RUN apk add --no-cache \
     dcron
 
 
-
+run mkdir -pv /tmp/usr/local/bin/
 # Install cronitor CLI
 RUN curl -sL https://gh-proxy.com/https://github.com/cronitorio/cronitor-cli/releases/download/31.6/linux_amd64.tar.gz -o /tmp/usr/local/bin/cronitor.tar.gz 
 
@@ -56,8 +49,6 @@ run sudo tar xvf /tmp/usr/local/bin/cronitor.tar.gz -C /usr/local/bin/
 run    chmod +x /usr/local/bin/cronitor
 run    rm /tmp/usr/local/bin/cronitor.tar.gz
 
-# Set up authentication - REPLACE THESE PLACEHOLDERS!
-#RUN cronitor configure --auth-username <YOUR_USERNAME_HERE> --auth-password <YOUR_PASSWORD_HERE>
 
 # Expose dashboard port
 EXPOSE 9000
