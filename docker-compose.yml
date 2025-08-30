@@ -38,11 +38,7 @@ services:
       - "SYS_TTY_CONFIG"
       - "WAKE_ALARM"
 
-    command:
-      - "bash"
-      - "-c"
-      - "cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-password $YOUR_PASSWORD_HERE &&\
-        \ cronitor dash --port 9000"
+    command: ["npx" ,"-y", "concurrently", "--kill-others","bash -c 'cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000 -v'" ,"crond -l 2 -f -d"]
 
     container_name: "crontab-guru-dashboard"
 
@@ -93,6 +89,8 @@ services:
       - "/vol1/1000/crontab-guru-dashboard/var/spool/cron/crontabs:/var/spool/cron/crontabs"
       - "/vol1/1000/immich-cli/root/.config/immich:/root/.config/immich"
       - "/vol1/1000/飞牛相册/MobileBackup:/vol1/1000/飞牛相册/MobileBackup"
+      - "/vol1/1000/crontab-guru-dashboard/app/nightly_task.sh:/app/nightly_task.sh"
+      - "/vol1/1000/crontab-guru-dashboard/etc/crontabs/:/etc/crontabs/"
 
     working_dir: "/app"
 

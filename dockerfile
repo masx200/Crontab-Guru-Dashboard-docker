@@ -17,7 +17,7 @@ RUN apk add --no-cache \
 RUN cnpm install -g @immich/cli --unsafe-perm \
     && npm cache clean --force \
     && rm -rf /tmp/* 
-
+run npm install -g @immich/cli
 
 run sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories
 RUN apk add --no-cache  tzdata  # 安装cron和时区工具 
@@ -38,7 +38,7 @@ RUN apk add --no-cache \
     curl \
     bash \
     ca-certificates \
-    dcron
+    dcron nano
 
 
 run mkdir -pv /tmp/usr/local/bin/
@@ -54,8 +54,8 @@ run    rm /tmp/usr/local/bin/cronitor.tar.gz
 EXPOSE 9000
 
 # Run the dashboard
-CMD ["bash","-c","cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000"]
+CMD ["npx" ,"-y", "concurrently", "--kill-others","bash -c 'cronitor configure --dash-username $YOUR_USERNAME_HERE --dash-password $YOUR_PASSWORD_HERE && cronitor dash --port 9000 -v'" ,"crond -l 2 -f -d"]
 
 env TELEMETRY=off
 
-
+run npm i -g concurrently
